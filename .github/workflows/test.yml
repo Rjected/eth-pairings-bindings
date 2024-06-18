@@ -3,13 +3,13 @@ name: Test
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, test]
   workflow_dispatch:
     inputs:
       publish:
         default: false
         description: Publish package
-        required: false 
+        required: false
         type: boolean
 
 jobs:
@@ -102,7 +102,7 @@ jobs:
       - name: Build
         working-directory: src/Nethermind.Crypto.Pairings
         run: dotnet build -c ${{ env.BUILD_CONFIG }} --no-restore
-    
+
       - name: Test
         working-directory: src/Nethermind.Crypto.Pairings.Tests
         run: dotnet test -c ${{ env.BUILD_CONFIG }} --no-restore
